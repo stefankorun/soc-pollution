@@ -8,6 +8,6 @@
   "repository": "https://github.com/stefankorun/soc-polution.git",
   "dependencies": {
     "express": "^4.12.3",
-    "mongoose": "^4.0.1"
+    "mongodb": "^2.0.27"
   }
 }
