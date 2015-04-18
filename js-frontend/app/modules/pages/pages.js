@@ -1,3 +1,3 @@
 angular.module('sp.modules.pages',[
-  //modulite stranicite
+  'app.modules.pages.dashboard'
 ]);

@@ -3,24 +3,56 @@
     <meta charset="utf-8">
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="app/style/master.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="app/style/master.css" />
   </head>
-  <body layout="column" ng-app="socPollution">
+  <body layout="column" ng-app="socPollution" ng-controller="dashboardController">
     <md-toolbar layout="row">
       <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
         <span class="visually-hidden">Menu</span>
       </button>
-      <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Hello World</h1>
+      <h1 class="md-toolbar-tools" layout-align-gt-sm="center">
+        {{mesurementTypes.currentMeasure.label}}
+        <i class="fa fa-{{mesurementTypes.currentMeasure.icon}} header-icon"></i>
+      </h1>
     </md-toolbar>
     <div layout="row" flex>
+
       <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
+        <md-button ng-repeat="mesurement in mesurementTypes.order" class="sidenav-button"
+                   ng-click="setMesurementType(mesurementTypes.list[mesurement])" >
+          <i class="fa fa-{{mesurementTypes.list[mesurement].icon}}"></i>
+          {{mesurementTypes.list[mesurement].label}}
+        </md-button>
+        <form ng-submit="$event.preventDefault()">
+          <md-autocomplete flex
+                           placeholder="Search city"
+                           md-no-cache="dataConfig.noCache"
+                           md-selected-item="dataConfig.selectedItem"
+                           md-search-text="dataConfig.searchText"
+                           md-items="item in dataConfig.searchCities(dataConfig.searchText)"
+                           md-item-text="item.formatted_address"
+                           md-floating-label="Search city">
+            <span md-highlight-text="dataConfig.searchText">{{item.formatted_address}}</span>
+          </md-autocomplete>
+        </form>
       </md-sidenav>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
+          <div layout="row" class="choseDays">
+            <span flex="30">
+              <md-input-container>
+                <label>Days before</label>
+                <input type="number" step="1" min="-5" max="0" name="daysBefore" ng-model="dataConfig.daysBefore">
+              </md-input-container>
+            </span>
+            <md-slider flex="70" class="md-primary" ng-model="dataConfig.daysBefore" step="1" min="-5" max="0" aria-label="rating">
+            </md-slider>
+          </div>
           <div flex sp-maps layout="column"></div>
         </md-content>
       </div>
@@ -41,6 +73,7 @@
   <script src="app/modules/components/maps/maps-directives.js"></script>
   <script src="app/modules/components/maps/maps.js"></script>
   <script src="app/modules/components/components.js"></script>
+  <script src="app/modules/pages/dashboard/dashboard.js"></script>
   <script src="app/modules/pages/pages.js"></script>
   <script src="app/modules/sections/sections.js"></script>
   <script src="app/modules/services/main-service.js"></script>
