@@ -24,7 +24,9 @@ module.exports = function (grunt) {
         singleQuotes: true
       },
       main: {
-        src: ['app/**/*.js']
+        files: {
+          src: ['./app/modules/**/*.js']
+        }
       }
     },
 
@@ -75,6 +77,7 @@ module.exports = function (grunt) {
 
   // ==== GRUNT registering tasks
   grunt.registerTask('serve', [
+    'ngAnnotate',
     'wiredep',
     'sass:dev',
     'express:dev',
