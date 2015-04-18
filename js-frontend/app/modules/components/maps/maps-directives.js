@@ -1,11 +1,12 @@
 angular.module('sp.modules.components.maps.directives',[])
   .directive('spMaps', function($window){
-    function link($scope, element){
+    function link(scope, element, attrs){
       function setMapHeight(){
         var height = element.height();
         element.find('.angular-google-map').height(height);
         element.find('.angular-google-map-container').height(height);
       }
+
       setMapHeight();
       $window.onresize = function() {
         setMapHeight();
@@ -14,7 +15,8 @@ angular.module('sp.modules.components.maps.directives',[])
 
     return {
       scope: {
-        measureData: '=?'
+        measureData: '=?',
+        center: '=?'
       },
       restrict: 'EA',
       link: link,

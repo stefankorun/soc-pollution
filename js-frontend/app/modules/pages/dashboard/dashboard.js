@@ -39,6 +39,9 @@ angular.module('app.modules.pages.dashboard',[])
 
     $scope.$watch('dataConfig.selectedItem', function(newVal){
       if(!newVal) return;
-      console.log(newVal);
+      $scope.dataConfig.center = {
+        latitude: newVal.geometry.location.lat,
+        longitude: newVal.geometry.location.lng
+      };
     })
   });

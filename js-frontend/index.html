@@ -53,7 +53,7 @@
             <md-slider flex="70" class="md-primary" ng-model="dataConfig.daysBefore" step="1" min="-5" max="0" aria-label="rating">
             </md-slider>
           </div>
-          <div flex sp-maps layout="column"></div>
+          <div flex sp-maps center="dataConfig.center" layout="column"></div>
         </md-content>
       </div>
     </div>
@@ -71,6 +71,7 @@
 
   <script src="app/modules/components/maps/maps-controllers.js"></script>
   <script src="app/modules/components/maps/maps-directives.js"></script>
+  <script src="app/modules/components/maps/maps-service.js"></script>
   <script src="app/modules/components/maps/maps.js"></script>
   <script src="app/modules/components/components.js"></script>
   <script src="app/modules/pages/dashboard/dashboard.js"></script>
