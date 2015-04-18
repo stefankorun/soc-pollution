@@ -1,0 +1,43 @@
+<html>
+  <head  lang="en">
+    <meta charset="utf-8">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
+  </head>
+  <body layout="column" ng-app="socPollution">
+    <md-toolbar layout="row">
+      <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Hello World</h1>
+    </md-toolbar>
+    <div layout="row" flex>
+      <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+
+      </md-sidenav>
+      <div layout="column" flex id="content">
+        <md-content layout="column" flex class="md-padding">
+
+        </md-content>
+      </div>
+    </div>
+  </body>
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <!-- endbower -->
+
+  <script src="app/modules/components/components.js"></script>
+  <script src="app/modules/pages/pages.js"></script>
+  <script src="app/modules/sections/sections.js"></script>
+  <script src="app/modules/services/main-service.js"></script>
+  <script src="app/modules/modules.js"></script>
+  <script src="app/app.js"></script>
+</html>
