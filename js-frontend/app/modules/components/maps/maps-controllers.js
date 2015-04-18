@@ -62,8 +62,8 @@ angular.module('sp.modules.components.maps.controllers', [])
         navigator.geolocation.getCurrentPosition(function (position) {
           $scope.center = {latitude: position.coords.latitude, longitude: position.coords.longitude};
 
-          $scope.c.center.latitude = position.coords.latitude;
-          $scope.c.center.longitude = position.coords.longitude;
+          //$scope.c.center.latitude = position.coords.latitude;
+          //$scope.c.center.longitude = position.coords.longitude;
           $scope.$apply();
         }, function (error) {
            console.log(error);
