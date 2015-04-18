@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         },
         includePaths: ['app/style'],
         files: {
-          'client/style/master.css': ['app/style/*.scss']
+          'app/style/master.css': ['app/style/*.scss']
         }
       }
     },
