@@ -40,7 +40,8 @@ angular.module('app.modules.pages.dashboard',[])
     $scope.$watch('dataConfig.selectedItem', function(newVal){
       if(!newVal) return;
       $scope.dataConfig.center = {
-        latitude: newVal.geometr
+        latitude: newVal.geometry.location.lat,
+        longtude: newVal.geometry.location.long
       };
     })
   });
