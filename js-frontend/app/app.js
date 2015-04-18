@@ -1,6 +1,8 @@
 angular.module('socPollution', [
     'ngMaterial',
-    'ui.router'
+    'ui.router',
+    'uiGmapgoogle-maps',
+    'sp.modules'
   ]).config(function(){
 
   });
