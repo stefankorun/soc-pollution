@@ -41,7 +41,7 @@ angular.module('app.modules.pages.dashboard',[])
       if(!newVal) return;
       $scope.dataConfig.center = {
         latitude: newVal.geometry.location.lat,
-        longtude: newVal.geometry.location.long
+        longitude: newVal.geometry.location.lng
       };
     })
   });
