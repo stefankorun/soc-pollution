@@ -7,7 +7,9 @@
   "license": "MIT",
   "repository": "https://github.com/stefankorun/soc-polution.git",
   "dependencies": {
+    "bluebird": "^2.9.24",
     "express": "^4.12.3",
+    "lodash": "^3.7.0",
     "mongodb": "^2.0.27",
     "mongoose": "^4.0.1",
     "node-uuid": "^1.4.3"
