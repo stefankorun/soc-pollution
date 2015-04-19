@@ -26,15 +26,27 @@ angular.module('sp.modules.components.maps.directives',[])
             else {
               e.dataSeries.visible = true;
             }
-            chart.render();
+            scope.chart.render();
           }
         };
-        var chart = new CanvasJS.Chart("chartContainer", newVal);
-        setTimeout(function() {
-          chart.render();
-        }, 500);
+        scope.chart = new CanvasJS.Chart("chartContainer", newVal);
+
+      });
+      scope.$watch('chart', function (newVal){
+        if(!newVal) return;
+          setTimeout(function(){
+            newVal.render();
+          }, 200);
+
       });
 
+      scope.$watch('isChart', function (newVal){
+        if(!newVal) return;
+          setTimeout(function(){
+            scope.chart.render();
+          }, 200);
+
+      })
     }
 
     return {

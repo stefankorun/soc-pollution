@@ -1,5 +1,5 @@
 angular.module('sp.modules.components.maps.controllers', [])
-  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService, $timeout) {
+  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService, $timeout, $filter) {
 
     $scope.map = {
       center: {latitude: 51.219053, longitude: 4.404418 },
@@ -102,7 +102,7 @@ angular.module('sp.modules.components.maps.controllers', [])
       var pointsOnChart = data.length/10;
       _.each(data, function(d, index){
         _.each(d.sensors, function(val, key){
-          if(index % pointsOnChart != 0) return;
+          //if(index % pointsOnChart != 0) return;
           if(!mapDataChart[key]) mapDataChart[key] = [];
           mapDataChart[key].push({label: $filter('date')(d.timestamp, '"dd-MM HH-mm"') , y: val})
         })
