@@ -1,4 +1,4 @@
-<div flex>
+<div flex style="position: relative;">
   <ui-gmap-google-map ng-show="!isChart"
           flex center='map.center'
           zoom='map.zoom'
@@ -7,10 +7,16 @@
 
     <ui-gmap-circle ng-repeat="c in stations track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
                     visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable"
-                    clickable="c.clickable" control="c.control"></ui-gmap-circle>
+                    clickable="c.clickable" events="c.events" control="c.control">
+
+    </ui-gmap-circle>
+
 
 
   </ui-gmap-google-map>
+    <label style="display:block;z-index:100;position:absolute;bottom:30px;left:3px;width:380px;height:38px;background:white;">
+        Show drawing manager (via options)
+    </label>
 
   <div id="chartContainer" ng-show="isChart"></div>
 

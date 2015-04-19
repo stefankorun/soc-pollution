@@ -1,6 +1,10 @@
 angular.module('sp.modules.components.maps.directives',[])
   .directive('spMaps', function($window){
     function link(scope, element, attrs){
+      scope.height = parseInt(element.height());
+      scope.width = parseInt(element.width())
+      scope.element = element;
+
       function setMapHeight(){
         var height = element.height();
         var width = element.width();
@@ -15,6 +19,7 @@ angular.module('sp.modules.components.maps.directives',[])
         setMapHeight();
       };
       scope.$watch('currentChartData', function(newVal){
+        console.log(newVal);
         setMapHeight();
         if(!newVal) return;
         newVal.legend ={
@@ -53,7 +58,9 @@ angular.module('sp.modules.components.maps.directives',[])
       scope: {
         measureData: '=?',
         center: '=?',
-        isChart: '=?'
+        isChart: '=?',
+        daysBefore: '=?',
+        sensorType: '=?'
       },
       restrict: 'EA',
       link: link,

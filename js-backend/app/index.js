@@ -5,4 +5,10 @@ express.use(function (req, res, next) {
     next();
 });
 
+express.all('/*', function(req, res, next) {
+    console.log('REQUEST from %s to %s', req.ip, req.url, req.query);
+    next();
+});
+
 exports.models = require("./models");
+exports.reader = require("./reader");

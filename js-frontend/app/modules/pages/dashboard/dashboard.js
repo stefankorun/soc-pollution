@@ -1,14 +1,22 @@
 angular.module('app.modules.pages.dashboard',[])
   .controller('dashboardController', function($scope, $http, $q){
     $scope.mesurementTypes = {
-      order: ['temperature', 'carbonDioxide', 'humidity'],
+      order: ['temp', 'CH4', 'NO2', 'SO2', 'humidity'],
       list: {
-        temperature: {
+        temp: {
           label: 'Temperature',
           icon: 'sun-o'
         },
-        carbonDioxide: {
-          label: 'CO2 Carbon dioxide',
+        CH4: {
+          label: 'CH4',
+          icon: 'cloud'
+        },
+        NO2: {
+          label: 'NO2',
+          icon: 'cloud'
+        },
+        SO2: {
+          label: 'SO2',
           icon: 'cloud'
         },
         humidity: {
@@ -19,7 +27,8 @@ angular.module('app.modules.pages.dashboard',[])
 
     };
     $scope.mesurementTypes.currentMeasure = $scope.mesurementTypes.list.temperature;
-    $scope.setMesurementType = function(measure){
+    $scope.setMesurementType = function(measure, name){
+      $scope.dataConfig.sensorType = name;
       $scope.dataConfig.isChart = false;
       $scope.mesurementTypes.currentMeasure = measure;
     };
