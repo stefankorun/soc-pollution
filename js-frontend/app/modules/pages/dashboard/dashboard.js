@@ -20,6 +20,7 @@ angular.module('app.modules.pages.dashboard',[])
     };
     $scope.mesurementTypes.currentMeasure = $scope.mesurementTypes.list.temperature;
     $scope.setMesurementType = function(measure){
+      $scope.dataConfig.isChart = false;
       $scope.mesurementTypes.currentMeasure = measure;
     };
     $scope.dataConfig = {};
