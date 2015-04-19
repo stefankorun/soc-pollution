@@ -1,40 +1,20 @@
 angular.module('sp.modules.components.maps.controllers', [])
-  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService) {
+  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService, $timeout) {
 
     $scope.map = {
       center: {latitude: 51.219053, longitude: 4.404418 },
       zoom: 14,
       events: {
         bounds_changed: function (maps, event, arguments) {
-          console.log('bounds_changed');
+          var bounds = maps.getBounds();
+          var data = {lat1: bounds.Ea.k, lat2:bounds.Ea.j, long1: bounds.va.k , long2: bounds.va.j};
+          debounceStations(data);
         }
       }
     };
 
+    $scope.stations = [];
     $scope.options = {scrollwheel: true};
-    $scope.c = {
-      id: 1,
-      center: {
-        latitude: 44,
-        longitude: -108
-      },
-      radius: 500,
-      stroke: {
-        color: '#08B21F',
-        weight: 2,
-        opacity: 1
-      },
-      fill: {
-        color: '#08B21F',
-        opacity: 0.5
-      },
-      geodesic: true,
-      draggable: true,
-      clickable: true,
-      editable: true,
-      visible: true,
-      control: {}
-    };
 
     Object.defineProperty($scope, 'center', {
       get: function () {
@@ -46,13 +26,38 @@ angular.module('sp.modules.components.maps.controllers', [])
       }
     });
 
-    mapsService.getAnalysis()
-      .then(function (result) {
-        console.log(result);
-      }, function (error) {
-        console.log(error);
-      });
+    function setStations(data){
+      $scope.stations = [];
+      mapsService.getAnalysis(data)
+        .then(function (result) {
+          for(var i = 0; i < result.length; i++){
+            var item = {
+              id: result[i]._id,
+              radius: result[i].qos*10,
+              center: {
+                latitude: result[i].lat,
+                longitude: result[i].lon
+              },
+              stroke: {
+                color: '#08B21F',
+                weight: 2,
+                opacity: 1
+              },
+              fill: {
+                color: '#08B21F',
+                opacity: 0.5
+              }
+            };
+            $scope.stations.push(item);
+          }
 
+
+        }, function (error) {
+          console.log(error);
+        });
+    }
+
+    var debounceStations = _.debounce(setStations, 500);
     uiGmapGoogleMapApi.then(function(maps) {
       $scope.getMyLocation();
     });
@@ -61,19 +66,11 @@ angular.module('sp.modules.components.maps.controllers', [])
       if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function (position) {
           $scope.center = {latitude: position.coords.latitude, longitude: position.coords.longitude};
-
-          //$scope.c.center.latitude = position.coords.latitude;
-          //$scope.c.center.longitude = position.coords.longitude;
           $scope.$apply();
         }, function (error) {
            console.log(error);
         });
       }
     };
-
-    $scope.setLocation = function(latitude, longitude){
-      $scope.map.center.latitude = latitude;
-      $scope.map.center.longitude = longitude;
-    }
 
   });
