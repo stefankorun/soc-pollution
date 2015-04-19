@@ -27,9 +27,10 @@ angular.module('sp.modules.components.maps.controllers', [])
     });
 
     function setStations(data){
-      $scope.stations = [];
+      //$scope.stations = [];
       mapsService.getAnalysis(data)
         .then(function (result) {
+          var newList = [];
           for(var i = 0; i < result.length; i++){
             var item = {
               id: result[i]._id,
@@ -48,8 +49,12 @@ angular.module('sp.modules.components.maps.controllers', [])
                 opacity: 0.5
               }
             };
-            $scope.stations.push(item);
+            newList.push(item);
+
           }
+
+          $scope.stations = newList;
+
 
 
         }, function (error) {
