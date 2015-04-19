@@ -1,6 +1,11 @@
+import time
 import serial
+
 ser = serial.Serial('/dev/ttyUSB0', 9600)
-ser.write('3')
 while 1 :
-    print 'a'
+    time.sleep(1)
+    sensor = ser.readline()
     print ser.readline()
+    file = open('./sensors', 'w+')
+    file.write(sensor)
+    file.close()

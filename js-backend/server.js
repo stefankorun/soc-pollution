@@ -14,6 +14,10 @@ mongoConn.once('open', function () {
     //for (var i = 0; i < 10; i++) {
     //    app.models.Station.init({name: 'Station' + i, analysis: [{}, {}]}, true);
     //}
+
+    setInterval(function () {
+        console.log(app.reader.getSensorsData());
+    }, 2000);
 });
 
 
@@ -22,8 +26,11 @@ mongoConn.once('open', function () {
 express.get('/', function (req, res) {
     res.send('Hello');
 });
+
 var server = express.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('SOC-POLLUTION app listening at http://%s:%s', host, port);
+
+    console.log('SOC-POLLUTION build date: %s', new Date());
+    console.log('SOC-POLLUTION server listening at http://%s:%s', host, port);
 });

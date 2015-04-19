@@ -24,15 +24,12 @@ var mngModel = mongoose.model('Station', mngSchema);
 
 /* EXPORTS */
 exports.init = function (data, saveFlag) {
-    var model = _.clone(new mngModel(data));
-    if (saveFlag) {
-        console.log('Saving station', data);
-        model.save();
-    }
+    //var model = _.clone(new mngModel(data));
+    var model = new mngModel(data);
+    if (saveFlag) model.save();
+
     return model;
 };
-
-console.log(new Date('2016-01-01'));
 
 exports.query = {
     all: function (props) {
@@ -54,6 +51,7 @@ exports.query = {
                     analysisArray.push(reading);
                 })
             });
+            analysisArray = _.sortBy(analysisArray, 'timestamp');
             deferred.resolve(analysisArray);
         });
         return deferred.promise;
@@ -67,7 +65,6 @@ express.get('/station', function (req, res) {
     })
 });
 express.get('/station/analysis', function (req, res) {
-    console.log(req.query);
     exports.query.analysis(req.query).then(function (data) {
         res.send(data);
     })
