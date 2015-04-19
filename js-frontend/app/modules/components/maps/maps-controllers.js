@@ -1,5 +1,5 @@
 angular.module('sp.modules.components.maps.controllers', [])
-  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService, $timeout) {
+  .controller('mapsController', function ($scope, uiGmapGoogleMapApi, mapsService, $timeout, $filter) {
 
     $scope.map = {
       center: {latitude: 51.219053, longitude: 4.404418 },
@@ -30,6 +30,7 @@ angular.module('sp.modules.components.maps.controllers', [])
       $scope.stations = [];
       mapsService.getAnalysis(data)
         .then(function (result) {
+          setChartData(result);
           for(var i = 0; i < result.length; i++){
             var item = {
               id: result[i]._id,
@@ -73,4 +74,46 @@ angular.module('sp.modules.components.maps.controllers', [])
       }
     };
 
+    function setChartData(data){
+      console.log(data);
+      var chartData = {
+        title: {
+          text: "POLLUTION GRAPH"
+        },
+        animationEnabled: true,
+        axisY: {
+          titleFontFamily: "arial",
+          titleFontSize: 12,
+          includeZero: false
+        },
+        toolTip: {
+          shared: true
+        },
+        data: []
+
+      };
+
+      var mapDataChart = {};
+      var pointsOnChart = data.length/10;
+      _.each(data, function(d, index){
+        _.each(d.sensors, function(val, key){
+          if(index % pointsOnChart != 0) return;
+          if(!mapDataChart[key]) mapDataChart[key] = [];
+          mapDataChart[key].push({label: $filter('date')(d.timestamp, '"dd-MM HH-mm"') , y: val})
+        })
+      });
+
+      _.each(mapDataChart, function(val, key){
+        chartData.data.push(
+          {
+            type: "spline",
+            name: key,
+            showInLegend: true,
+            dataPoints: val
+          }
+        )
+      });
+
+      $scope.currentChartData = chartData;
+    }
   });
