@@ -24,7 +24,7 @@
       <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
         <md-button ng-repeat="mesurement in mesurementTypes.order" class="sidenav-button"
-                   ng-click="setMesurementType(mesurementTypes.list[mesurement])" >
+                   ng-click="setMesurementType(mesurementTypes.list[mesurement], mesurement)" >
           <i class="fa fa-{{mesurementTypes.list[mesurement].icon}}"></i>
           {{mesurementTypes.list[mesurement].label}}
         </md-button>
@@ -66,7 +66,8 @@
             <md-slider flex="70" class="md-primary" ng-model="dataConfig.daysBefore" step="1" min="-5" max="0" aria-label="rating">
             </md-slider>
           </div>
-          <div flex sp-maps center="dataConfig.center" layout="column" is-chart="dataConfig.isChart"></div>
+          <div flex sp-maps sensor-type="dataConfig.sensorType" style="position: relative;"
+               center="dataConfig.center" days-before="dataConfig.daysBefore" layout="column" is-chart="dataConfig.isChart"></div>
         </md-content>
       </div>
     </div>
@@ -79,7 +80,7 @@
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
-  <script src="bower_components/lodash/lodash.js"></script>
+  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
   <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
   <!-- endbower -->
 

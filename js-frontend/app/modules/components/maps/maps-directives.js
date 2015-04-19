@@ -1,6 +1,10 @@
 angular.module('sp.modules.components.maps.directives',[])
   .directive('spMaps', function($window){
     function link(scope, element, attrs){
+      scope.height = parseInt(element.height());
+      scope.width = parseInt(element.width())
+      scope.element = element;
+
       function setMapHeight(){
         var height = element.height();
         var width = element.width();
@@ -15,6 +19,7 @@ angular.module('sp.modules.components.maps.directives',[])
         setMapHeight();
       };
       scope.$watch('currentChartData', function(newVal){
+        console.log(newVal);
         setMapHeight();
         if(!newVal) return;
         newVal.legend ={
@@ -26,22 +31,36 @@ angular.module('sp.modules.components.maps.directives',[])
             else {
               e.dataSeries.visible = true;
             }
-            chart.render();
+            scope.chart.render();
           }
         };
-        var chart = new CanvasJS.Chart("chartContainer", newVal);
-        setTimeout(function() {
-          chart.render();
-        }, 500);
+        scope.chart = new CanvasJS.Chart("chartContainer", newVal);
+
+      });
+      scope.$watch('chart', function (newVal){
+        if(!newVal) return;
+          setTimeout(function(){
+            newVal.render();
+          }, 200);
+
       });
 
+      scope.$watch('isChart', function (newVal){
+        if(!newVal) return;
+          setTimeout(function(){
+            scope.chart.render();
+          }, 200);
+
+      })
     }
 
     return {
       scope: {
         measureData: '=?',
         center: '=?',
-        isChart: '=?'
+        isChart: '=?',
+        daysBefore: '=?',
+        sensorType: '=?'
       },
       restrict: 'EA',
       link: link,
