@@ -28,6 +28,19 @@
           <i class="fa fa-{{mesurementTypes.list[mesurement].icon}}"></i>
           {{mesurementTypes.list[mesurement].label}}
         </md-button>
+
+        <md-button  class="sidenav-button" ng-disabled="true" >
+        </md-button>
+
+        <md-button  class="sidenav-button" ng-click="dataConfig.isChart = true;" >
+          <i class="fa fa-area-chart"></i>
+          Graph
+        </md-button>
+
+        <md-button  class="sidenav-button" ng-click="dataConfig.isChart = false;" >
+          <i class="fa fa-map-marker"></i>
+          Map
+        </md-button>
         <form ng-submit="$event.preventDefault()">
           <md-autocomplete flex
                            placeholder="Search city"
@@ -41,7 +54,7 @@
           </md-autocomplete>
         </form>
       </md-sidenav>
-      <div layout="column" flex id="content">
+      <div layout="column" flex>
         <md-content layout="column" flex class="md-padding">
           <div layout="row" class="choseDays">
             <span flex="30">
@@ -53,11 +66,12 @@
             <md-slider flex="70" class="md-primary" ng-model="dataConfig.daysBefore" step="1" min="-5" max="0" aria-label="rating">
             </md-slider>
           </div>
-          <div flex sp-maps center="dataConfig.center" layout="column"></div>
+          <div flex sp-maps center="dataConfig.center" layout="column" is-chart="dataConfig.isChart"></div>
         </md-content>
       </div>
     </div>
   </body>
+  <script src="scripts/canvasjs.min.js"></script>
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
