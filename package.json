@@ -11,6 +11,7 @@
     "npm": "2.7.x"
   },
   "scripts": {
-    "start": "cd js-backend && npm install && node server.js"
+    "postinstall": "cd js-backend && npm install",
+    "start": "node js-backend/server.js"
   }
 }
