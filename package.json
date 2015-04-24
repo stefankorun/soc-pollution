@@ -8,7 +8,7 @@
   "repository": "https://github.com/stefankorun/soc-polution.git",
   "engines": {
     "node": "0.12.x",
-    "npm": "2.8.x"
+    "npm": "2.7.x"
   },
   "scripts": {
     "start": "node js-backend/server.js"
