@@ -11,6 +11,7 @@
     "npm": "2.8.x"
   },
   "scripts": {
+    "prestart": "cd js-backend; npm install",
     "start": "node js-backend/server.js"
   }
 }
