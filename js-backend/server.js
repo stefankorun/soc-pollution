@@ -36,7 +36,7 @@ express.get('/', function (req, res) {
     res.send('Hello');
 });
 
-var server = express.listen(3000, function () {
+var server = express.listen(process.env.PORT || 3000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
