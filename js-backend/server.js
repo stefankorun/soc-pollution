@@ -36,7 +36,9 @@ express.get('/', function (req, res) {
     res.send('Hello');
 });
 
-var server = express.listen(process.env.PORT || 5000, function () {
+
+var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000;
+var server = express.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
 
