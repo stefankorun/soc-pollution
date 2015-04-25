@@ -20,7 +20,7 @@ var mongoConn = mongoose.connect(mongoUrl).connection;
 mongoConn.on('error', console.error.bind(console, 'connection error:'));
 mongoConn.once('open', function () {
     // Generate test data
-    //app.models.Station.dummy();
+    app.models.Station.dummy();
 
     setInterval(function () {
         // Read sensor data

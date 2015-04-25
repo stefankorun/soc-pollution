@@ -96,7 +96,7 @@ express.get('/station/thresh', function (req, res) {
 
 /* HELPERS */
 function randomDate() {
-    var start = new Date('2015-04-15');
+    var start = new Date('2015-04-20');
     var end = new Date();
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
