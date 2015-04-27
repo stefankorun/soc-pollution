@@ -107,10 +107,9 @@ angular.module('sp.modules.components.maps.controllers', [])
             circleLabel.css('top', labelH - 10);
             circleLabel.css('left', labelW - 5);
             circleLabel.css('color', '#fff');
-            circleLabel.text(Math.floor(result[i].sensors[$scope.sensorType || 'temp'], 2));
+            circleLabel.text(Math.floor(result[i].sensors[$scope.sensorType || 'temp']));
             $scope.element.append(circleLabel);
 
-            newList.push(item);
           }
           $scope.stations = newList;
         }, function (error) {
@@ -181,7 +180,6 @@ angular.module('sp.modules.components.maps.controllers', [])
       var pointsOnChart = data.length/10;
       _.each(data, function(d, index){
         _.each(d.sensors, function(val, key){
-          if(index % pointsOnChart != 0) return;
           if(!mapDataChart[key]) mapDataChart[key] = [];
           mapDataChart[key].push({label: $filter('date')(d.timestamp, '"dd-MM HH-mm"') , y: val})
         })
