@@ -1,0 +1,20 @@
+{
+  "name": "soc-polution",
+  "version": "1.0.0",
+  "description": "System on chip for environmental pollution measurement.",
+  "main": "js-backend/server.js",
+  "author": "soc",
+  "license": "MIT",
+  "repository": "https://github.com/stefankorun/soc-polution.git",
+  "engines": {
+    "node": "0.12.x",
+    "npm": "2.7.x"
+  },
+  "scripts": {
+    "postinstall": "cd js-backend && npm install",
+    "start": "node js-backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
