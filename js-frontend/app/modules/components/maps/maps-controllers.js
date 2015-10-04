@@ -43,10 +43,10 @@ angular.module('sp.modules.components.maps.controllers', [])
       date = $filter('date')(date, 'yyyy-MM-dd');
       console.log()
       var data = {
-        lat1: $scope.bounds.getNorthEast().lat(),
-        lat2: $scope.bounds.getSouthWest().lat(),
-        long1: $scope.bounds.getNorthEast().lng() ,
-        long2: $scope.bounds.getSouthWest().lng(),
+        lat1: $scope.bounds.getSouthWest().lat(),
+        lat2: $scope.bounds.getNorthEast().lat(),
+        long1: $scope.bounds.getSouthWest().lng(),
+        long2: $scope.bounds.getNorthEast().lng() ,
         date: date
       };
       lastMapData = data;
@@ -107,7 +107,7 @@ angular.module('sp.modules.components.maps.controllers', [])
             circleLabel.css('top', labelH - 10);
             circleLabel.css('left', labelW - 5);
             circleLabel.css('color', '#fff');
-            circleLabel.text(Math.floor(result[i].sensors[$scope.sensorType || 'temp']));
+            circleLabel.text(parseFloat(result[i].sensors[$scope.sensorType || 'temp'].toFixed(2)));
             $scope.element.append(circleLabel);
 
           }

@@ -1,10 +1,10 @@
 angular.module('sp.modules.components.maps.services',[])
-  .factory('mapsService', function ($q, $http) {
+  .factory('mapsService', function ($q, $http, mainService) {
     var factory = {};
 
     factory.getAnalysis = function (data) {
       var deferred = $q.defer();
-      $http.get('http://192.168.0.100:3000/station/analysis', {params: data})
+      $http.get(mainService.apiUrl + 'station/analysis', {params: data})
         .success(function (result) {
           deferred.resolve(result);
         })
@@ -16,7 +16,7 @@ angular.module('sp.modules.components.maps.services',[])
 
     factory.getThreshold = function () {
       var deferred = $q.defer();
-      $http.get('http://192.168.0.100:3000/station/thresh')
+      $http.get(mainService.apiUrl + 'station/thresh')
         .success(function (result) {
           deferred.resolve(result);
         })
