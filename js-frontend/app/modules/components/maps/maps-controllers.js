@@ -41,12 +41,12 @@ angular.module('sp.modules.components.maps.controllers', [])
       var date = new Date();
       date = (new Date()).setDate(date.getDate() + $scope.daysBefore);
       date = $filter('date')(date, 'yyyy-MM-dd');
-
+      console.log()
       var data = {
-        lat1: $scope.bounds.Ea.k,
-        lat2: $scope.bounds.Ea.j,
-        long1: $scope.bounds.va.k ,
-        long2: $scope.bounds.va.j,
+        lat1: $scope.bounds.getNorthEast().lat(),
+        lat2: $scope.bounds.getSouthWest().lat(),
+        long1: $scope.bounds.getNorthEast().lng() ,
+        long2: $scope.bounds.getSouthWest().lng(),
         date: date
       };
       lastMapData = data;
