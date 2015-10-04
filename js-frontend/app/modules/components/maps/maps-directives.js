@@ -19,7 +19,6 @@ angular.module('sp.modules.components.maps.directives',[])
         setMapHeight();
       };
       scope.$watch('currentChartData', function(newVal){
-        console.log(newVal);
         setMapHeight();
         if(!newVal) return;
         newVal.legend ={

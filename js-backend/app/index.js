@@ -6,7 +6,7 @@ express.use(function (req, res, next) {
 });
 
 express.all('/*', function(req, res, next) {
-    console.log('REQUEST from %s to %s', req.ip, req.url, req.query);
+    console.log('REQUEST from %s to %s', req.ip, req.url);
     next();
 });
 

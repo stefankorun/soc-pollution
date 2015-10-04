@@ -20,7 +20,7 @@ var mngSchema = new mongoose.Schema({
             SO2: {type: Number, default: randomSO2},
             CH4: {type: Number, default: randomCH4},
             temp: {type: Number, default: randomTemp}
-        },
+        }
     }]
 });
 var mngModel = mongoose.model('Station', mngSchema);
@@ -64,7 +64,7 @@ exports.dummy = function () {
     mngModel.remove({}, function (err) {
         console.log('Clean Station collection data', err);
     });
-    for (var i = 0; i < 30; i++) {
+    for (var i = 100; i < 130; i++) {
         exports.init({name: 'Station' + i, analysis: [{}, {}]}, true);
     }
 };
@@ -96,7 +96,11 @@ express.get('/station/thresh', function (req, res) {
 
 /* HELPERS */
 function randomDate() {
-    var start = new Date('2015-04-20');
+    var start = function () {
+      var d = new Date();
+      d.setDate(d.getDate() - 5);
+      return d;
+    }();
     var end = new Date();
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }

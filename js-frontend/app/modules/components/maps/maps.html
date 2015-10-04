@@ -1,5 +1,5 @@
-<div flex style="position: relative;">
-  <ui-gmap-google-map ng-show="!isChart"
+<div flex="1" layout="row" style="position: relative;">
+  <ui-gmap-google-map ng-show="!isChart" flex="1"
           flex center='map.center'
           zoom='map.zoom'
           options="options"
@@ -18,6 +18,6 @@
         Show drawing manager (via options)
     </label>
 
-  <div id="chartContainer" ng-show="isChart"></div>
+  <div id="chartContainer" ng-show="isChart" flex></div>
 
 </div>

@@ -20,7 +20,7 @@ var mongoConn = mongoose.connect(mongoUrl).connection;
 mongoConn.on('error', console.error.bind(console, 'connection error:'));
 mongoConn.once('open', function () {
     // Generate test data
-    app.models.Station.dummy();
+    //app.models.Station.dummy();
 
     setInterval(function () {
         // Read sensor data
@@ -31,11 +31,9 @@ mongoConn.once('open', function () {
 
 
 /* EXPRESS */
-
 express.get('/', function (req, res) {
-    res.send('Hello');
+    res.send('# soc-polution: System on chip for environmental pollution measurement.');
 });
-
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000;
 var server = express.listen(port, function () {
